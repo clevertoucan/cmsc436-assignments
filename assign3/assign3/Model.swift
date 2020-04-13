@@ -13,11 +13,31 @@ enum Direction: CaseIterable {
     case up, down, left, right
 }
 
-struct Tile: Equatable {
+class Tile: Equatable, Hashable {
+    static func == (lhs: Tile, rhs: Tile) -> Bool {
+        return lhs.value == rhs.value &&
+            lhs.id == rhs.id &&
+            lhs.row == rhs.row &&
+            lhs.col == rhs.col
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     var value: Int
     var id: Int
     var row: Int
     var col: Int
+    var swapped = false
+    
+    init(value: Int, id: Int, row: Int, col: Int){
+        self.value = value
+        self.id = id
+        self.row = row
+        self.col = col
+    }
+    
 }
 
 class ButtonTile: UIButton {
@@ -34,12 +54,15 @@ class Triples: CustomStringConvertible {
     var board : [[Tile?]]
     let boardsize = 4
     var currID = 1
+    var movedTiles: [Tile: (Int, Int)]
+    var newTiles: Set<Tile>
+    var fadeTiles: Set<Tile>
     public var description: String {
         var d = "|"
         for y in 0...boardsize - 1{
             for x in 0...boardsize-1 {
-                if let num = board[y][x]?.value {
-                    d += String(num) + ", "
+                if let t = board[y][x] {
+                    d += "\(t.value), "
                 } else {
                     d += "0, "
                 }
@@ -52,7 +75,9 @@ class Triples: CustomStringConvertible {
         var score = 0
         for y in 0...boardsize - 1{
             for x in 0...boardsize-1 {
-                score += board[y][x]!.value
+                if let tile = board[y][x]{
+                    score += tile.value
+                }
             }
         }
         return score
@@ -60,6 +85,9 @@ class Triples: CustomStringConvertible {
     
     init(){
         board = Array<Array<Tile?>>(repeating: Array<Tile?>(repeating: nil, count: boardsize), count: boardsize)
+        newTiles = Set<Tile>()
+        movedTiles = Dictionary<Tile, (Int, Int)>()
+        fadeTiles = Set<Tile>()
     }
     
     func newgame(_ rand: Bool){
@@ -90,7 +118,10 @@ class Triples: CustomStringConvertible {
         if(indices.count > 0){
             let val = prng(max: 2) + 1
             let x = indices[prng(max: indices.count)]
-            board[x / boardsize][x % boardsize] = Tile(value: val, id: currID, row: x % boardsize, col: x / boardsize)
+            let tile = Tile(value: val, id: currID, row: x % boardsize, col: x / boardsize)
+            board[x / boardsize][x % boardsize] = tile
+            currID += 1
+            newTiles.insert(tile)
         }
     }
     
@@ -109,39 +140,32 @@ class Triples: CustomStringConvertible {
     func shift(){
         for y in 0...boardsize - 1 {
             for x in 0...boardsize - 1 {
+                if let tile = board[y][x] {
+                    tile.swapped = false
+                }
+            }
+        }
+        for y in 0...boardsize - 1 {
+            for x in 0...boardsize - 1 {
                 if x < 3 {
                     if let currTile = board[y][x]{
                         let value = currTile.value
-                        switch value {
-                        // if same, combine
-                        case board[y][x+1]?.value:
-                            if value != 1 && value != 2 {
-                                board[y][x] = board[y][x+1]
+                        if let nextTile = board[y][x+1] {
+                            if nextTile.value == value && value != 1 && value != 2 {
+                                board[y][x] = nextTile
                                 board[y][x+1] = nil
-                                var nextTile = board[y][x+1]!
-                                nextTile.value *= 2
-                                nextTile.row = x
-                                nextTile.col = y
+                                nextTile.value += nextTile.value
+                                fadeTiles.insert(currTile)
+                            } else if nextTile.value + value == 3{
+                                nextTile.value = 3
+                                board[y][x] = nextTile
+                                board[y][x+1] = nil
+                                fadeTiles.insert(currTile)
                             }
-                        case 1, 2:
-                            if var nextTile = board[y][x+1] {
-                                if nextTile.value + value == 3{
-                                    nextTile.row = x
-                                    nextTile.col = y
-                                    nextTile.value = 3
-                                    board[y][x] = nextTile
-                                    board[y][x+1] = nil
-                                }
-                            }
-                        default: continue
                         }
                     //if 0, swap no matter
                     } else {
                         board[y][x] = board[y][x+1]
-                        if var tile = board[y][x]{
-                            tile.row = x
-                            tile.col = y
-                        }
                         board[y][x+1] = nil
                     }
                 }
@@ -164,7 +188,6 @@ class Triples: CustomStringConvertible {
             shift()
             rotate()
             rotate()
-            
             rotate()
 
         
@@ -177,14 +200,24 @@ class Triples: CustomStringConvertible {
         
         case .up:
             rotate()
-            
             rotate()
             rotate()
             shift()
             rotate()
 
         }
-        
+        for y in 0...boardsize - 1 {
+            for x in 0...boardsize - 1 {
+                if let tile = board[y][x]{
+                    if(tile.row != x || tile.col != y){
+                        movedTiles[tile] = (Int(tile.row - x), Int(tile.col - y))
+                        tile.row = x
+                        tile.col = y
+                        
+                    }
+                }
+            }
+        }
     }
     
     func collapseWithSpawn(_ dir: Direction){

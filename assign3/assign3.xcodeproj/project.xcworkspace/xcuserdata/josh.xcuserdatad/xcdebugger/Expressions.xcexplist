@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ViewController.boardUpdate():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "board.movedTiles">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BoardView.layoutSubviews():BoardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "subviews">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Triples.collapse(dir:):Model.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tile.col != y">
+            </PersistentString>
+            <PersistentString
+               value = "tile.row != x">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
