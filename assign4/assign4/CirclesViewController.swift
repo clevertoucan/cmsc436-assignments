@@ -13,6 +13,8 @@ class CirclesViewController: UIViewController, UIGestureRecognizerDelegate, CLLo
     
 
     @IBOutlet var circleView: CircleView!
+    @IBOutlet var speedLabel: UILabel!
+    @IBOutlet var distanceLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBAction func exitView(_ sender: Any){
         dismiss(animated: true, completion: nil)
@@ -31,6 +33,8 @@ class CirclesViewController: UIViewController, UIGestureRecognizerDelegate, CLLo
     var circlesDocument: CirclesDocument?
     var locationManager = CLLocationManager()
     var lastLocation: CLLocation?
+    var distance = 0.0
+    var currentPoly: MKPolyline?
     
     @objc func doTap(recog: UITapGestureRecognizer) {
         let loc = recog.location(in: view)
@@ -76,7 +80,13 @@ class CirclesViewController: UIViewController, UIGestureRecognizerDelegate, CLLo
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        <#code#>
+        if let poly = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: poly)
+            renderer.lineWidth = 3
+            renderer.strokeColor = .red
+            return renderer
+        }
+        return MKOverlayRenderer(overlay: overlay)
     }
     
     func centerMap(loc: CLLocationCoordinate2D){
@@ -85,12 +95,25 @@ class CirclesViewController: UIViewController, UIGestureRecognizerDelegate, CLLo
         mapView.setRegion(region, animated: true)
     }
     
+    
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if lastLocation == nil {
             lastLocation = locations.first
         } else {
             guard let latest = locations.first else { return }
             centerMap(loc: latest.coordinate)
+            let distanceInMeters = lastLocation?.distance(from: latest) ?? 0
+            let distanceInMiles = distanceInMeters * 3.28 / 5280
+            let duration = latest.timestamp.timeIntervalSince(lastLocation!.timestamp)
+            distance += distanceInMiles
+            let speed = distanceInMiles * 3600.0 / duration
+            speedLabel.text = String(format:"%.2f miles/hour", speed)
+            distanceLabel.text = String(format:"%.2f miles", distance)
+            let coords = [lastLocation!.coordinate] + locations.map { $0.coordinate }
+            let poly = MKPolyline(coordinates: coords, count: coords.count)
+            mapView.addOverlay(poly)
+            lastLocation = latest
         }
         
     }

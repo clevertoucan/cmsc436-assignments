@@ -53,23 +53,57 @@
                                     <action selector="satSwitchWithSender:" destination="3iE-ED-OZ3" eventType="valueChanged" id="Uvw-5A-Fdw"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydF-1I-Dsc">
+                                <rect key="frame" x="16" y="589" width="54" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5W-IQ-QA4">
+                                <rect key="frame" x="78" y="589" width="48" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyn-X5-hn2">
+                                <rect key="frame" x="293" y="589" width="66" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDQ-jf-jgq">
+                                <rect key="frame" x="213" y="589" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Em0-4J-Gf4" firstAttribute="trailing" secondItem="eyn-X5-hn2" secondAttribute="trailing" constant="16" id="7CJ-tF-O9Z"/>
                             <constraint firstItem="Em0-4J-Gf4" firstAttribute="trailing" secondItem="ieI-43-9fi" secondAttribute="trailing" id="8OG-9P-fhS"/>
                             <constraint firstItem="b4W-eJ-YcS" firstAttribute="top" secondItem="ieI-43-9fi" secondAttribute="top" constant="20" id="F4i-0v-60r"/>
+                            <constraint firstItem="eyn-X5-hn2" firstAttribute="leading" secondItem="GDQ-jf-jgq" secondAttribute="trailing" constant="8" id="G5e-yb-7qL"/>
+                            <constraint firstItem="I5W-IQ-QA4" firstAttribute="centerY" secondItem="ydF-1I-Dsc" secondAttribute="centerY" id="ICn-la-Cgo"/>
                             <constraint firstItem="Em0-4J-Gf4" firstAttribute="bottom" secondItem="Jcq-kS-A9q" secondAttribute="bottom" constant="19" id="LLX-HO-lQc"/>
                             <constraint firstItem="b4W-eJ-YcS" firstAttribute="trailing" secondItem="ieI-43-9fi" secondAttribute="trailing" constant="-30" id="Rty-7W-hTt"/>
                             <constraint firstItem="ieI-43-9fi" firstAttribute="top" secondItem="Em0-4J-Gf4" secondAttribute="top" id="UnI-l0-Ug8"/>
+                            <constraint firstItem="I5W-IQ-QA4" firstAttribute="leading" secondItem="ydF-1I-Dsc" secondAttribute="trailing" constant="8" id="UxC-mU-TYA"/>
                             <constraint firstItem="Em0-4J-Gf4" firstAttribute="bottom" secondItem="ieI-43-9fi" secondAttribute="bottom" constant="100" id="gbP-GT-OcW"/>
+                            <constraint firstItem="Jcq-kS-A9q" firstAttribute="top" secondItem="eyn-X5-hn2" secondAttribute="bottom" constant="7" id="mjy-6s-Kxw"/>
                             <constraint firstItem="Jcq-kS-A9q" firstAttribute="centerX" secondItem="Em0-4J-Gf4" secondAttribute="centerX" id="pVR-MG-Nx3"/>
+                            <constraint firstItem="ydF-1I-Dsc" firstAttribute="leading" secondItem="Em0-4J-Gf4" secondAttribute="leading" constant="16" id="qdU-DA-dJh"/>
+                            <constraint firstItem="Jcq-kS-A9q" firstAttribute="top" secondItem="ydF-1I-Dsc" secondAttribute="bottom" constant="7" id="rGA-uI-xXs"/>
+                            <constraint firstItem="GDQ-jf-jgq" firstAttribute="centerY" secondItem="eyn-X5-hn2" secondAttribute="centerY" id="vpV-ut-Lhb"/>
                             <constraint firstItem="ieI-43-9fi" firstAttribute="leading" secondItem="Em0-4J-Gf4" secondAttribute="leading" id="wAL-FC-eLu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Em0-4J-Gf4"/>
                     </view>
                     <connections>
                         <outlet property="circleView" destination="6nl-7g-gYK" id="YJd-AH-Ou8"/>
+                        <outlet property="distanceLabel" destination="eyn-X5-hn2" id="VFh-Yk-QYv"/>
                         <outlet property="mapView" destination="ieI-43-9fi" id="dc6-Cb-F6f"/>
+                        <outlet property="speedLabel" destination="I5W-IQ-QA4" id="Fff-aN-gBg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="meG-mw-ddx" userLabel="First Responder" sceneMemberID="firstResponder"/>
