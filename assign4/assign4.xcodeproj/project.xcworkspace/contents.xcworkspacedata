@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:assign4.xcodeproj">
+      location = "group:/Users/josh/Documents/GitHub/cmsc436-sadpuppy/assign4/assign4/MapViewController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/josh/Documents/GitHub/cmsc436-sadpuppy/assign4/assign4/CirclesViewController.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

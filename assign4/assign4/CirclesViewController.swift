@@ -7,13 +7,30 @@
 //
 
 import UIKit
+import MapKit
 
-class CirclesViewController: UIViewController, UIGestureRecognizerDelegate {
+class CirclesViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate, MKMapViewDelegate {
     
 
     @IBOutlet var circleView: CircleView!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBAction func exitView(_ sender: Any){
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func satSwitch(sender: Any){
+        if let uiSwitch = sender as? UISegmentedControl {
+            if(uiSwitch.selectedSegmentIndex == 0){
+                mapView.mapType = .standard
+            } else {
+                mapView.mapType = .satellite
+            }
+        }
+    }
     
     var circlesDocument: CirclesDocument?
+    var locationManager = CLLocationManager()
+    var lastLocation: CLLocation?
     
     @objc func doTap(recog: UITapGestureRecognizer) {
         let loc = recog.location(in: view)
@@ -28,34 +45,62 @@ class CirclesViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //locationManager.allowsBackgroundLocationUpdates = true
+        if(CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() ==   .authorizedWhenInUse) {
+            locationManager.startUpdatingLocation()
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return ((gestureRecognizer == self.tapRecog) && (otherGestureRecognizer == self.doubleTapRecog))
     }
     
     var tapRecog: UITapGestureRecognizer!
     var doubleTapRecog: UITapGestureRecognizer!
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if(CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() ==   .authorizedWhenInUse) {
+            locationManager.startUpdatingLocation()
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        <#code#>
+    }
+    
+    func centerMap(loc: CLLocationCoordinate2D){
+        let radius: CLLocationDistance = 300
+        let region = MKCoordinateRegion(center: loc, latitudinalMeters: radius, longitudinalMeters: radius)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if lastLocation == nil {
+            lastLocation = locations.first
+        } else {
+            guard let latest = locations.first else { return }
+            centerMap(loc: latest.coordinate)
+        }
+        
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Access the document
         circlesDocument?.open(completionHandler: { (success) in
-            if success {
-                if let container = self.circlesDocument?.container {
-                    self.circleView.circleContainer = container
-                    self.circleView.setNeedsDisplay()
-                    
-                    self.tapRecog = UITapGestureRecognizer(target: self, action: #selector(self.doTap))
-                    self.tapRecog.numberOfTapsRequired = 1
-                    self.circleView.addGestureRecognizer(self.tapRecog)
-                    self.tapRecog.delegate = self
-                
-                    self.doubleTapRecog = UITapGestureRecognizer(target: self, action: #selector(self.doTapExit))
-                    self.doubleTapRecog.numberOfTapsRequired = 2
-                   self.view.addGestureRecognizer(self.doubleTapRecog)
-
-                }
-            } else {
+            if !success {
                 self.presentWarningWith(title: "Error", message: "Document can't be viewed.") {
                     self.dismiss(animated: true)
                 }
