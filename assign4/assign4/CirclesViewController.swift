@@ -17,7 +17,9 @@ class CirclesViewController: UIViewController, UIGestureRecognizerDelegate, CLLo
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBAction func exitView(_ sender: Any){
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.circlesDocument?.close(completionHandler: nil)
+        }
     }
     
     @IBAction func satSwitch(sender: Any){
@@ -34,23 +36,12 @@ class CirclesViewController: UIViewController, UIGestureRecognizerDelegate, CLLo
     var locationManager = CLLocationManager()
     var lastLocation: CLLocation?
     var distance = 0.0
-    var currentPoly: MKPolyline?
-    
-    @objc func doTap(recog: UITapGestureRecognizer) {
-        let loc = recog.location(in: view)
-        circlesDocument?.container?.circles.append(Circle(c: loc, r: 100))
-        circleView.setNeedsDisplay()
-        circlesDocument?.updateChangeCount(.done)
-    }
-    
-    @objc func doTapExit(recog: UITapGestureRecognizer) {
-        dismiss(animated: true) {
-            self.circlesDocument?.close(completionHandler: nil)
-        }
-    }
+    var track: GPXTrack?
+    var loaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loaded = circlesDocument?.container != nil
         mapView.delegate = self
         mapView.showsUserLocation = true
         locationManager = CLLocationManager()
@@ -61,6 +52,11 @@ class CirclesViewController: UIViewController, UIGestureRecognizerDelegate, CLLo
             locationManager.startUpdatingLocation()
         } else {
             locationManager.requestWhenInUseAuthorization()
+        }
+        if loaded {
+            let coords = circlesDocument!.container!.path
+            let poly = MKPolyline(coordinates: coords.map { CLLocationCoordinate2D(latitude: $0.x, longitude: $0.y) }, count: coords.count)
+            mapView.addOverlay(poly)
         }
     }
     
@@ -98,24 +94,26 @@ class CirclesViewController: UIViewController, UIGestureRecognizerDelegate, CLLo
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if lastLocation == nil {
-            lastLocation = locations.first
-        } else {
-            guard let latest = locations.first else { return }
-            centerMap(loc: latest.coordinate)
-            let distanceInMeters = lastLocation?.distance(from: latest) ?? 0
-            let distanceInMiles = distanceInMeters * 3.28 / 5280
-            let duration = latest.timestamp.timeIntervalSince(lastLocation!.timestamp)
-            distance += distanceInMiles
-            let speed = distanceInMiles * 3600.0 / duration
-            speedLabel.text = String(format:"%.2f miles/hour", speed)
-            distanceLabel.text = String(format:"%.2f miles", distance)
-            let coords = [lastLocation!.coordinate] + locations.map { $0.coordinate }
-            let poly = MKPolyline(coordinates: coords, count: coords.count)
-            mapView.addOverlay(poly)
-            lastLocation = latest
+        if !loaded{
+            if lastLocation == nil {
+                lastLocation = locations.first
+            } else {
+                guard let latest = locations.first else { return }
+                centerMap(loc: latest.coordinate)
+                let distanceInMeters = lastLocation?.distance(from: latest) ?? 0
+                let distanceInMiles = distanceInMeters * 3.28 / 5280
+                let duration = latest.timestamp.timeIntervalSince(lastLocation!.timestamp)
+                distance += distanceInMiles
+                let speed = distanceInMiles * 3600.0 / duration
+                speedLabel.text = String(format:"%.2f miles/hour", speed)
+                distanceLabel.text = String(format:"%.2f miles", distance)
+                let coords = [lastLocation!.coordinate] + locations.map { $0.coordinate }
+                let poly = MKPolyline(coordinates: coords, count: coords.count)
+                circlesDocument?.container = GPXTrack(poly: poly)
+                mapView.addOverlay(poly)
+                lastLocation = latest
+            }
         }
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {

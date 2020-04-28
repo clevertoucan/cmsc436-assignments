@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03281C452457BA6C0069CFDD /* CirclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03281C442457BA6C0069CFDD /* CirclesViewController.swift */; };
+		0332BCF02457D5EB009E3F2E /* GPXTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332BCEF2457D5EB009E3F2E /* GPXTrack.swift */; };
 		038F0CE82456492100F4E136 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F0CE32456492000F4E136 /* CircleView.swift */; };
 		038F0CEA2456492100F4E136 /* CirclesDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F0CE52456492100F4E136 /* CirclesDocument.swift */; };
 		038F0CF02456739200F4E136 /* CirclesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038F0CEF2456739200F4E136 /* CirclesModel.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		03281C442457BA6C0069CFDD /* CirclesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CirclesViewController.swift; path = "/Users/josh/Documents/GitHub/cmsc436-sadpuppy/assign4/assign4/CirclesViewController.swift"; sourceTree = "<absolute>"; };
+		0332BCEF2457D5EB009E3F2E /* GPXTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXTrack.swift; sourceTree = "<group>"; };
 		038F0CE32456492000F4E136 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		038F0CE52456492100F4E136 /* CirclesDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CirclesDocument.swift; sourceTree = "<group>"; };
 		038F0CEF2456739200F4E136 /* CirclesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesModel.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				03F3F9E62454CA41007CB8F4 /* Assets.xcassets */,
 				03F3F9E82454CA41007CB8F4 /* LaunchScreen.storyboard */,
 				03F3F9EB2454CA41007CB8F4 /* Info.plist */,
+				0332BCEF2457D5EB009E3F2E /* GPXTrack.swift */,
 			);
 			path = assign4;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			files = (
 				038F0CE82456492100F4E136 /* CircleView.swift in Sources */,
 				038F0CF02456739200F4E136 /* CirclesModel.swift in Sources */,
+				0332BCF02457D5EB009E3F2E /* GPXTrack.swift in Sources */,
 				03F3F9DE2454CA40007CB8F4 /* DocumentBrowserViewController.swift in Sources */,
 				03F3F9DC2454CA40007CB8F4 /* AppDelegate.swift in Sources */,
 				03281C452457BA6C0069CFDD /* CirclesViewController.swift in Sources */,

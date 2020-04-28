@@ -36,7 +36,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
             in: .userDomainMask,
             appropriateFor: nil,
             create: true
-            ).appendingPathComponent("untitled.circles")
+            ).appendingPathComponent("untitled.gpx436")
         
         if let templateURL = templateURL {
             allowsDocumentCreation = fileManager.createFile(atPath: templateURL.path, contents: Data())

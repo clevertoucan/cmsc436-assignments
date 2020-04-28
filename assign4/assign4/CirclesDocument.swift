@@ -9,7 +9,7 @@
 import UIKit
 
 class CirclesDocument: UIDocument {
-    var container: CircleContainer?
+    var container: GPXTrack?
 
     override func contents(forType typeName: String) throws -> Any {
         // Encode your document with an instance of NSData or NSFileWrapper
@@ -18,7 +18,7 @@ class CirclesDocument: UIDocument {
     
     override func load(fromContents contents: Any, ofType typeName: String?) throws {
         if let data = contents as? Data {
-            container = CircleContainer(json: data)
+            container = GPXTrack(json: data)
         }
     }
 }
