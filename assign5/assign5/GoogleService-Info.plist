@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>689947122296-pgclo26dkhfkl00lbu8p058tc8dpqevv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.689947122296-pgclo26dkhfkl00lbu8p058tc8dpqevv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDDpoNpRCW87GzBSVfdyLP44FBAr96g0Vs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>689947122296</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>edu.maryland.cmsc436.spring2020.openTok.assign5</string>
+	<key>PROJECT_ID</key>
+	<string>assign5-sadpuppy</string>
+	<key>STORAGE_BUCKET</key>
+	<string>assign5-sadpuppy.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:689947122296:ios:e6a33dfbcc02bcecf6eb8d</string>
+	<key>DATABASE_URL</key>
+	<string>https://assign5-sadpuppy.firebaseio.com</string>
+</dict>
+</plist>
