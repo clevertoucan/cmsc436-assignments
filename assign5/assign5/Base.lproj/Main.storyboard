@@ -157,11 +157,35 @@
                     <view key="view" contentMode="scaleToFill" id="IJa-aU-XC2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xsu-vF-ZRA" customClass="PlayerView" customModule="assign5" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.1059814974" green="0.1059814974" blue="0.1059814974" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Video..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxD-LZ-19A">
+                                <rect key="frame" x="86" y="366" width="242.5" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.1059814974" green="0.1059814974" blue="0.1059814974" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TxD-LZ-19A" firstAttribute="centerY" secondItem="rLC-xc-T5E" secondAttribute="centerY" id="2ED-B7-hBB"/>
+                            <constraint firstItem="TxD-LZ-19A" firstAttribute="centerX" secondItem="rLC-xc-T5E" secondAttribute="centerX" id="61R-3L-hnE"/>
+                            <constraint firstItem="rLC-xc-T5E" firstAttribute="trailing" secondItem="Xsu-vF-ZRA" secondAttribute="trailing" id="Ufk-Vx-8me"/>
+                            <constraint firstItem="Xsu-vF-ZRA" firstAttribute="leading" secondItem="rLC-xc-T5E" secondAttribute="leading" id="hOh-Ne-kef"/>
+                            <constraint firstItem="rLC-xc-T5E" firstAttribute="bottom" secondItem="Xsu-vF-ZRA" secondAttribute="bottom" id="jnB-az-Otj"/>
+                            <constraint firstItem="Xsu-vF-ZRA" firstAttribute="top" secondItem="rLC-xc-T5E" secondAttribute="top" id="wt3-fM-Jdi"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rLC-xc-T5E"/>
                     </view>
                     <navigationItem key="navigationItem" id="Hlj-y4-n08"/>
+                    <connections>
+                        <outlet property="defaultMessage" destination="TxD-LZ-19A" id="0dx-Bj-FMz"/>
+                        <outlet property="playerView" destination="Xsu-vF-ZRA" id="drF-2Z-Xj0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fta-aM-cNd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

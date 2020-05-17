@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		033544A82470672E0062AD5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033544A72470672E0062AD5E /* AppDelegate.swift */; };
 		033544AA2470672E0062AD5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033544A92470672E0062AD5E /* SceneDelegate.swift */; };
-		033544AC2470672E0062AD5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033544AB2470672E0062AD5E /* ViewController.swift */; };
 		033544AF2470672E0062AD5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033544AD2470672E0062AD5E /* Main.storyboard */; };
 		033544B12470672F0062AD5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 033544B02470672F0062AD5E /* Assets.xcassets */; };
 		033544B42470672F0062AD5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033544B22470672F0062AD5E /* LaunchScreen.storyboard */; };
-		033544BC24706D6E0062AD5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 033544BB24706D6E0062AD5E /* GoogleService-Info.plist */; };
 		033544BE24706EF20062AD5E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033544BD24706EF20062AD5E /* MainController.swift */; };
 		033544C024706FF00062AD5E /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033544BF24706FF00062AD5E /* PlayerController.swift */; };
 		033544C2247070170062AD5E /* URLController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033544C1247070170062AD5E /* URLController.swift */; };
+		033544C62470DB0F0062AD5E /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033544C52470DB0F0062AD5E /* PlayerView.swift */; };
+		03D868022470E9740017D3E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03D868012470E96D0017D3E5 /* GoogleService-Info.plist */; };
 		8BFEF25036213F8B56DB278E /* Pods_assign5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B112780C8901992605FF967 /* Pods_assign5.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,15 +24,15 @@
 		033544A42470672E0062AD5E /* assign5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = assign5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		033544A72470672E0062AD5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		033544A92470672E0062AD5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		033544AB2470672E0062AD5E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		033544AE2470672E0062AD5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		033544B02470672F0062AD5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		033544B32470672F0062AD5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		033544B52470672F0062AD5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		033544BB24706D6E0062AD5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		033544BD24706EF20062AD5E /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		033544BF24706FF00062AD5E /* PlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		033544C1247070170062AD5E /* URLController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLController.swift; sourceTree = "<group>"; };
+		033544C52470DB0F0062AD5E /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		03D868012470E96D0017D3E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/josh/Documents/GitHub/cmsc436-sadpuppy/assign5/assign5/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
 		6B112780C8901992605FF967 /* Pods_assign5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_assign5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B7E4C93EEA6F7E4A7DEBF7 /* Pods-assign5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assign5.release.xcconfig"; path = "Target Support Files/Pods-assign5/Pods-assign5.release.xcconfig"; sourceTree = "<group>"; };
 		FBFEB691728EA1BBDC3C91E0 /* Pods-assign5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assign5.debug.xcconfig"; path = "Target Support Files/Pods-assign5/Pods-assign5.debug.xcconfig"; sourceTree = "<group>"; };
@@ -71,17 +71,17 @@
 		033544A62470672E0062AD5E /* assign5 */ = {
 			isa = PBXGroup;
 			children = (
+				03D868012470E96D0017D3E5 /* GoogleService-Info.plist */,
 				033544A72470672E0062AD5E /* AppDelegate.swift */,
 				033544A92470672E0062AD5E /* SceneDelegate.swift */,
-				033544AB2470672E0062AD5E /* ViewController.swift */,
 				033544BD24706EF20062AD5E /* MainController.swift */,
 				033544BF24706FF00062AD5E /* PlayerController.swift */,
 				033544C1247070170062AD5E /* URLController.swift */,
 				033544AD2470672E0062AD5E /* Main.storyboard */,
 				033544B02470672F0062AD5E /* Assets.xcassets */,
 				033544B22470672F0062AD5E /* LaunchScreen.storyboard */,
-				033544BB24706D6E0062AD5E /* GoogleService-Info.plist */,
 				033544B52470672F0062AD5E /* Info.plist */,
+				033544C52470DB0F0062AD5E /* PlayerView.swift */,
 			);
 			path = assign5;
 			sourceTree = "<group>";
@@ -164,7 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				033544B42470672F0062AD5E /* LaunchScreen.storyboard in Resources */,
-				033544BC24706D6E0062AD5E /* GoogleService-Info.plist in Resources */,
+				03D868022470E9740017D3E5 /* GoogleService-Info.plist in Resources */,
 				033544B12470672F0062AD5E /* Assets.xcassets in Resources */,
 				033544AF2470672E0062AD5E /* Main.storyboard in Resources */,
 			);
@@ -220,9 +220,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				033544BE24706EF20062AD5E /* MainController.swift in Sources */,
-				033544AC2470672E0062AD5E /* ViewController.swift in Sources */,
 				033544A82470672E0062AD5E /* AppDelegate.swift in Sources */,
 				033544C2247070170062AD5E /* URLController.swift in Sources */,
+				033544C62470DB0F0062AD5E /* PlayerView.swift in Sources */,
 				033544C024706FF00062AD5E /* PlayerController.swift in Sources */,
 				033544AA2470672E0062AD5E /* SceneDelegate.swift in Sources */,
 			);
@@ -376,7 +376,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.maryland.cmsc436.spring2020.openTok.assign5;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = assign5;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -394,7 +394,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.maryland.cmsc436.spring2020.openTok.assign5;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = assign5;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
